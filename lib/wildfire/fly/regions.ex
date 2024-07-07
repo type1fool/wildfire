@@ -1,4 +1,7 @@
 defmodule Wildfire.Fly.Regions do
+  @moduledoc """
+  Agent for managing Fly.io region data via the Fly CLI.
+  """
   use Agent
   require Logger
 
