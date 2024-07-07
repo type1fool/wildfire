@@ -31,6 +31,9 @@ WORKDIR /app
 RUN mix local.hex --force && \
     mix local.rebar --force
 
+# install fly cli
+RUN curl -L https://fly.io/install.sh | sh
+
 # set build ENV
 ENV MIX_ENV="prod"
 
