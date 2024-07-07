@@ -11,8 +11,7 @@ defmodule Wildfire.Application do
       WildfireWeb.Telemetry,
       Wildfire.Repo,
       {Ecto.Migrator,
-        repos: Application.fetch_env!(:wildfire, :ecto_repos),
-        skip: skip_migrations?()},
+       repos: Application.fetch_env!(:wildfire, :ecto_repos), skip: skip_migrations?()},
       {DNSCluster, query: Application.get_env(:wildfire, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Wildfire.PubSub},
       # Start the Finch HTTP client for sending emails
@@ -20,7 +19,8 @@ defmodule Wildfire.Application do
       # Start a worker by calling: Wildfire.Worker.start_link(arg)
       # {Wildfire.Worker, arg},
       # Start to serve requests, typically the last entry
-      WildfireWeb.Endpoint
+      WildfireWeb.Endpoint,
+      Wildfire.Fly.Regions
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
