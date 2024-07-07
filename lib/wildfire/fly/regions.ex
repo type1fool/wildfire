@@ -49,6 +49,8 @@ defmodule Wildfire.Fly.Regions do
   end
 
   defp fetch_regions do
+    Logger.info("Fetching Fly.io regions")
+
     with {payload, 0} <- System.cmd("fly", ~w(platform regions --json)),
          {:ok, map} <- Jason.decode(payload) do
       map
