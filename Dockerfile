@@ -73,8 +73,8 @@ RUN apt-get update -y && \
 
 # install fly cli
 RUN curl -L https://fly.io/install.sh | sh
-RUN export FLYCTL_INSTALL="/root/.fly"
-RUN export PATH="$FLYCTL_INSTALL/bin:$PATH"
+ENV FLYCTL_INSTALL "/root/.fly"
+ENV PATH "$FLYCTL_INSTALL/bin:$PATH"
 
 # Set the locale
 RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
