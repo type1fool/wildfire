@@ -1,7 +1,13 @@
-<main class="p-4 lg:px-8">
+<main class="p-4 lg:px-8 space-y-6">
   <.flash_group flash={@flash} />
 
-  <h1>Fly Regions</h1>
+  <h1>🏗️ Wildfire</h1>
+
+  <h2>🔖 Readme</h2>
+
+  <pre class="bg-gray-100 rounded p-4 whitespace-pre-wrap"><%= File.read!("README.md") %></pre>
+
+  <h2>🌎🌍🌏 Fly Regions</h2>
 
   <.table
     rows={Wildfire.Fly.Regions.list_regions() |> Enum.sort_by(& &1["Code"])}
