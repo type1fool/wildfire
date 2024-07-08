@@ -5,22 +5,24 @@ defmodule Wildfire.Application do
 
   use Application
 
+  @pubsub Wildfire.PubSub
+
   @impl true
   def start(_type, _args) do
     children = [
       WildfireWeb.Telemetry,
       Wildfire.Repo,
       {Ecto.Migrator,
-        repos: Application.fetch_env!(:wildfire, :ecto_repos),
-        skip: skip_migrations?()},
+       repos: Application.fetch_env!(:wildfire, :ecto_repos), skip: skip_migrations?()},
       {DNSCluster, query: Application.get_env(:wildfire, :dns_cluster_query) || :ignore},
-      {Phoenix.PubSub, name: Wildfire.PubSub},
+      {Phoenix.PubSub, name: @pubsub},
       # Start the Finch HTTP client for sending emails
       {Finch, name: Wildfire.Finch},
       # Start a worker by calling: Wildfire.Worker.start_link(arg)
       # {Wildfire.Worker, arg},
       # Start to serve requests, typically the last entry
-      WildfireWeb.Endpoint
+      WildfireWeb.Endpoint,
+      Wildfire.Fly.Regions
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

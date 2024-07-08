@@ -31,3 +31,10 @@ Using the Fly.io hosting platform, Wildfire connects a server in two regions and
 - [ ] Handle timeouts and errors
 - [ ] Subscribe to PubSub topic with the two selected regions
 - [ ] Broadcast new measurements to subscribers
+
+## Inspiration
+
+- https://rtt.fly.dev/
+- https://worldpagespeed.fly.dev/
+    - https://fly.io/phoenix-files/world-page-speed-test-elastic-scale-with-flame/
+    - https://fly.io/blog/rethinking-serverless-with-flame/
