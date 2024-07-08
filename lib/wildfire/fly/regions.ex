@@ -5,7 +5,7 @@ defmodule Wildfire.Fly.Regions do
   use Agent
   require Logger
 
-  @timeout 15_000
+  @timeout :timer.seconds(15)
 
   def start_link(_) do
     regions = fetch_regions()
