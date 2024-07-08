@@ -31,9 +31,6 @@ WORKDIR /app
 RUN mix local.hex --force && \
     mix local.rebar --force
 
-# install fly cli
-RUN curl -L https://fly.io/install.sh | sh
-
 # set build ENV
 ENV MIX_ENV="prod"
 
@@ -71,8 +68,13 @@ RUN mix release
 FROM ${RUNNER_IMAGE}
 
 RUN apt-get update -y && \
-  apt-get install -y libstdc++6 openssl libncurses5 locales ca-certificates \
+  apt-get install -y libstdc++6 openssl libncurses5 locales ca-certificates curl \
   && apt-get clean && rm -f /var/lib/apt/lists/*_*
+
+# install fly cli
+RUN curl -L https://fly.io/install.sh | sh
+RUN export FLYCTL_INSTALL="/root/.fly"
+RUN export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
 # Set the locale
 RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
