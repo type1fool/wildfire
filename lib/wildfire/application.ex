@@ -21,8 +21,8 @@ defmodule Wildfire.Application do
       # Start a worker by calling: Wildfire.Worker.start_link(arg)
       # {Wildfire.Worker, arg},
       # Start to serve requests, typically the last entry
-      WildfireWeb.Endpoint,
-      Wildfire.Fly.Regions
+      WildfireWeb.Endpoint
+      # Wildfire.Fly.Regions
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

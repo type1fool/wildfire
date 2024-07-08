@@ -59,10 +59,12 @@ defmodule Wildfire.Fly.Regions do
       map
     else
       {_stderr, exit_status} when is_integer(exit_status) ->
-        raise "invalid exit status: #{exit_status}"
+        Logger.error("invalid exit status: #{exit_status}")
+        %{}
 
       {:error, %Jason.DecodeError{}} ->
-        raise "invalid JSON response"
+        Logger.error("invalid JSON response")
+        %{}
     end
   end
 end

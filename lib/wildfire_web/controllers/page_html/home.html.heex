@@ -3,13 +3,13 @@
 
   <h1>🏗️ Wildfire</h1>
 
-  <h2>🔖 Readme</h2>
-
-  <pre class="bg-gray-100 rounded p-4 whitespace-pre-wrap"><%= File.read!("README.md") %></pre>
+  <p>
+    Wildfire collects network performance data to inform decisions for multi-region and peer-to-peer applications.
+  </p>
 
   <h2>🌎🌍🌏 Fly Regions</h2>
 
-  <.table
+  <%!-- <.table
     rows={Wildfire.Fly.Regions.list_regions() |> Enum.sort_by(& &1["Code"])}
     id="fly-regions"
   >
@@ -31,5 +31,5 @@
     <:col :let={region} label="Gateway Available">
       <.icon :if={region["GatewayAvailable"]} name="hero-check-circle-solid" class="bg-green-500" />
     </:col>
-  </.table>
+  </.table> --%>
 </main>
