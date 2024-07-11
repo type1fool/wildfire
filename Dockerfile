@@ -63,6 +63,8 @@ COPY config/runtime.exs config/
 COPY rel rel
 RUN mix release
 
+FROM flyio/flyctl:latest as flyio
+
 # start a new build stage so that the final image will only contain
 # the compiled release and other runtime necessities
 FROM ${RUNNER_IMAGE}
@@ -71,10 +73,7 @@ RUN apt-get update -y && \
   apt-get install -y libstdc++6 openssl libncurses5 locales ca-certificates curl \
   && apt-get clean && rm -f /var/lib/apt/lists/*_*
 
-# install fly cli
-RUN curl -L https://fly.io/install.sh | sh
-ENV FLYCTL_INSTALL "/root/.fly"
-ENV PATH "$FLYCTL_INSTALL/bin:$PATH"
+COPY --from=flyio /flyctl /usr/bin
 
 # Set the locale
 RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
